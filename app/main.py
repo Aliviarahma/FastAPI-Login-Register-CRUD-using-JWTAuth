@@ -5,7 +5,7 @@ from app.config import db
 from app.service.auth_service import generate_role
 
 origins= [
-    "http://localhost:3000"
+    "http://localhost:3001"
 ]
 
 def init_app():
@@ -19,7 +19,8 @@ def init_app():
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=origins,
+        #allow_origins=["origins"],
+        allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"]
