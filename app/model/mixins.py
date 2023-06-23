@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel, Field
-from sqlalchemy import Column, DateTime
+from sqlalchemy import Column, DateTime, func
 from sqlmodel import Field
 
 
@@ -12,3 +12,8 @@ class TimeMixin(BaseModel):
         sa_column=Column(DateTime, default=datetime.now,
                          onupdate=datetime.now, nullable=False)
     )
+
+
+class TimestampMixin:
+    created_at = Column(DateTime, default=datetime.now)
+    modified_at = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)

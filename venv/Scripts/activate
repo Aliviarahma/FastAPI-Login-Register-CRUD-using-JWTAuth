@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\Dashboard-Embedded-Netmonk\backend\venv"
+VIRTUAL_ENV="D:\Netmonk\embed-dashboard\backend\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -36,7 +36,7 @@ class AuthService:
         # mapping request data to class entity table
         _person = Person(id=_person_id, name=register.name, role=register.role)
 
-        _users = Users(id=_users_id, username=register.username, email=register.email,
+        _users = Users(id=_users_id, username=register.username, email=register.email, role=register.role,
                        password=pwd_context.hash(register.password),
                        person_id=_person_id)
 
@@ -73,6 +73,19 @@ class AuthService:
             return JWTRepo(data={"username": _username.username}).generate_token()
         raise HTTPException(status_code=404, detail="Username not found !")
 
+
+    #authentication function
+    async def authenticate_user(login: LoginSchema):
+        user = await UsersRepository.find_by_username(login.username)
+        
+        results= {
+                "username": user.username,
+                "role": user.role
+        }
+
+        return results
+    
+
     @staticmethod
     async def forgot_password_service(forgot_password: ForgotPasswordSchema):
         _email = await UsersRepository.find_by_email(forgot_password.email)
@@ -83,7 +96,7 @@ class AuthService:
 
 # Generate roles manually
 async def generate_role():
-    _role = await RoleRepository.find_by_list_role_name(["admin", "user"])
+    _role = await RoleRepository.find_by_list_role_name(["admin", "business", "DBS", "marketing", "tech", "netmonk", "user"])
     if not _role:
         await RoleRepository.create_list(
-            [Role(id=str(uuid4()), role_name="admin"), Role(id=str(uuid4()), role_name="user")])
+            [Role(id=str(uuid4()), role_name="admin"), Role(id=str(uuid4()), role_name="user"), Role(id=str(uuid4()), role_name="tech"), Role(id=str(uuid4()), role_name="business"), Role(id=str(uuid4()), role_name="DBS"), Role(id=str(uuid4()), role_name="marketing"), Role(id=str(uuid4()), role_name="netmonk")])

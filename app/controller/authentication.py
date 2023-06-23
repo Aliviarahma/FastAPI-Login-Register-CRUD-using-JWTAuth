@@ -13,9 +13,10 @@ async def register(request_body: RegisterSchema):
 
 
 @router.post("/login", response_model=ResponseSchema)
-async def login(requset_body: LoginSchema):
-    token = await AuthService.logins_service(requset_body)
-    return ResponseSchema(detail="Successfully login", result={"token_type": "Bearer", "access_token": token})
+async def login(request_body: LoginSchema):
+    token = await AuthService.logins_service(request_body)
+    user = await AuthService.authenticate_user(request_body)
+    return ResponseSchema(detail="Successfully login", result={"token_type": "Bearer", "access_token": token, "user": user})
 
 
 @router.post("/forgot-password", response_model=ResponseSchema, response_model_exclude_none=True)

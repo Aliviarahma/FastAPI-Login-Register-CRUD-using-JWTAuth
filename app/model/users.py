@@ -1,9 +1,18 @@
 from typing import List, Optional
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Enum
 from sqlmodel import SQLModel, Field, Relationship
 
 from app.model.mixins import TimeMixin
 from app.model.user_role import UsersRole
+
+class role(str, Enum):
+    admin = "admin"
+    business = "business"
+    DBS = "DBS"
+    marketing = "marketing"
+    nech = "tech"
+    netmonk = "netmonk"
+    treg= "treg"
 
 class Users(SQLModel,TimeMixin,table=True):
     __tablename__= "users"
@@ -11,6 +20,7 @@ class Users(SQLModel,TimeMixin,table=True):
     id: Optional[str] = Field(None, primary_key=True, nullable=False)
     username: str = Field(sa_column=Column("username", String, unique=True))
     email: str = Field(sa_column=Column("email", String, unique=True))
+    role: str
     password: str
 
     person_id: Optional[str] = Field(default=None, foreign_key="person.id")
