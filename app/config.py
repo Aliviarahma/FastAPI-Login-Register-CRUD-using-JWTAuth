@@ -5,8 +5,8 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy import create_engine
 
-DB_CONFIG = f"postgresql+asyncpg://postgres:dbnetmonk!@localhost:5433/embed_dash"
-#DB_CONFIG = f"postgresql+asyncpg://postgres:dbnetmonk!@172.17.0.1:5432/embed_dash"
+#DB_CONFIG = f"postgresql+asyncpg://postgres:dbnetmonk!@localhost:5433/embed_dash"
+DB_CONFIG = f"postgresql+asyncpg://postgres:dbnetmonk!@172.17.0.1:5432/embed_dash"
 
 
 ALLOWED_ORIGINS = "http://tech.data-production.netmonk.id:3001/", "http://localhost:3001", "https://app.netmonk.id/tech/web-analytics/"

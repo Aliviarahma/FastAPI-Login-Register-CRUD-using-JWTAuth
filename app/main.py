@@ -4,10 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import db, ALLOWED_ORIGINS
 from app.service.auth_service import generate_role
 
-# origins= [
-#     "http://localhost:3001"
-# ]
-
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.openapi.utils import get_openapi
 
@@ -23,7 +19,11 @@ def init_app():
     app = FastAPI(
         title= "Netmonk Embedded Dashboard",
         description= "Login Page",
-        version= "1"
+        version= "1",
+        docs_url = None,
+        redoc_url = None,
+        openapi_url = None
+
     )
 
     app.add_middleware(
@@ -44,11 +44,12 @@ def init_app():
     async def shutdown():
         await db.close()
 
-    from app.controller import authentication, users, crud
+    from app.controller import authentication, users, crud, add_order
 
     app.include_router(authentication.router)
     #app.include_router(users.router)
     app.include_router(crud.router)
+    app.include_router(add_order.router)
 
     return app
 

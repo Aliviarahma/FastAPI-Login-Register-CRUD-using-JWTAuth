@@ -25,15 +25,15 @@ class BaseRepo:
 
 
     @classmethod
-    async def get_by_progress(cls, model_order_closing_date: str, treg: str):
+    async def get_by_progress(cls, model_order_closing_date: str, model_treg: str):
         query = select(cls.model).where((cls.model.order_closing_date.is_(None)) & (cls.model.treg == model_treg))
         return (await db.execute(query)).scalar().all()
 
 
     @classmethod
-    async def get_by_nullvalue(cls, model_pic_am: str, model_li_milestone: str):
+    async def get_by_nullvalue(cls, model_crm_order_type: str, order_created_date: str):
         query = select(cls.model).where(
-            ((cls.model.pic_am == None) | (cls.model.li_milestone == None))
+            (cls.model.crm_order_type == None) | (cls.model.order_created_date == model_order_created_date)
         )
         return [result.id for result in (await db.execute(query)).scalars().all()]
 

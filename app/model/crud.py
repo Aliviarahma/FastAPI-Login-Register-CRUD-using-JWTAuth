@@ -8,9 +8,6 @@ from app.model.mixins import TimeMixin, TimestampMixin
 
 models.Base.metadata.create_all(bind=engine)
 
-# class Users(SQLModel,TimeMixin,table=True):
-#     __tablename__= "users"
-
 class Order(TimestampMixin, Base):
     __tablename__ ="netmonk_fulfillment"
 
@@ -52,3 +49,5 @@ class Order(TimestampMixin, Base):
     order_status = Column(VARCHAR)
     li_milestone = Column(VARCHAR)
     tgl_fbc = Column(Date)
+
+
