@@ -7,12 +7,6 @@ from app.model.user_role import UsersRole
 
 class role(str, Enum):
     admin = "admin"
-    business = "business"
-    DBS = "DBS"
-    marketing = "marketing"
-    nech = "tech"
-    netmonk = "netmonk"
-    treg= "treg"
 
 class Users(SQLModel,TimeMixin,table=True):
     __tablename__= "users"

@@ -28,11 +28,6 @@ class AuthService:
         _users_id = str(uuid4())
 
 
-        # open image profile default to bas64 string
-        # with open("./media/profile.png", "rb") as f:
-        #     image_str = base64.b64encode(f.read())
-        # image_str = "data:image/png;base64," + image_str.decode('utf-8')
-
         # mapping request data to class entity table
         _person = Person(id=_person_id, name=register.name, role=register.role)
 
@@ -96,7 +91,7 @@ class AuthService:
 
 # Generate roles manually
 async def generate_role():
-    _role = await RoleRepository.find_by_list_role_name(["admin", "business", "DBS", "marketing", "tech", "netmonk", "user"])
+    _role = await RoleRepository.find_by_list_role_name(["admin", "user"])
     if not _role:
         await RoleRepository.create_list(
-            [Role(id=str(uuid4()), role_name="admin"), Role(id=str(uuid4()), role_name="user"), Role(id=str(uuid4()), role_name="tech"), Role(id=str(uuid4()), role_name="business"), Role(id=str(uuid4()), role_name="DBS"), Role(id=str(uuid4()), role_name="marketing"), Role(id=str(uuid4()), role_name="netmonk")])
+            [Role(id=str(uuid4()), role_name="admin"), Role(id=str(uuid4()), role_name="user")])

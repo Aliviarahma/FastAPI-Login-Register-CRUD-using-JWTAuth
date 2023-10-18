@@ -17,7 +17,7 @@ def init_app():
     db.init()
 
     app = FastAPI(
-        title= "Netmonk Embedded Dashboard",
+        title= "FastAPI",
         description= "Login Page",
         version= "1",
         docs_url = None,
@@ -44,12 +44,11 @@ def init_app():
     async def shutdown():
         await db.close()
 
-    from app.controller import authentication, users, crud, add_order
+    from app.controller import authentication, crud
 
     app.include_router(authentication.router)
-    #app.include_router(users.router)
     app.include_router(crud.router)
-    app.include_router(add_order.router)
+
 
     return app
 
@@ -57,14 +56,14 @@ app = init_app()
 
 def start():
     """Launched with 'poetry run start' at root level """
-    uvicorn.run("app.main:app", host="localhost", port=5000, reload=True)
+    uvicorn.run("app.main:app", host="localhost", port=8000, reload=True)
 
 
 security = HTTPBasic()
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
     correct_username = secrets.compare_digest(credentials.username, "user")
-    correct_password = secrets.compare_digest(credentials.password, "netmonk123!")
+    correct_password = secrets.compare_digest(credentials.password, "password")
     if not (correct_username and correct_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

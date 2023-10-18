@@ -50,44 +50,9 @@ class ResponseSchema(BaseModel):
 #CRUD system
 class OrderSchema(BaseModel):
     id: Optional[str] = None
-    subs_id: Optional[str] = None
-    nama_customer: Optional[str] = None
-    account_name: Optional[str] = None
-    produk: Optional[str] = None	
-    order_id: Optional[str] = None	
-    crm_order_type: Optional[str] = None
-    agreement_name: Optional[str] = None	
-    location: Optional[str] = None
-    pic_am: Optional[str] = None	
-    sid: Optional[int] = None
-    treg: Optional[str] = None
-    witel: Optional[str] = None
-    divisi: Optional[str] = None
-    segment: Optional[str] = None
-    durasi_berlangganan: Optional[str] = None	
-    nilai_revenue: Optional[int] = None
-    revenue_per_bulan: Optional[int] = None	
-    order_created_date: Optional[date] = None	
-    no_order_astinet: Optional[str] = None
-    upload_dokumen: Optional[str] = None	
-    document: Optional[bool] = None	
-    activate_account: Optional[bool] = None	
-    activation_date: Optional[date] = None
-    input_ip: Optional[bool] = None
-    link_dashboard: Optional[str] = None
-    username: Optional[str] = None
-    password: Optional[str] = None
-    auth_netmonk_hi: Optional[str] = None
-    draft_bast: Optional[str] = None
-    bast_upload_date: Optional[date] = None
-    status_bast: Optional[str] = None
-    status_internal_netmonk_teknis: Optional[str] = None	
-    status_internal_netmonk_admin: Optional[str] = None
-    order_closing_date: Optional[date] = None
-    order_status: Optional[str] = None
-    li_milestone: Optional[str] = None
-    tgl_fbc: Optional[date] = None   
-
+    order_id: Optional[str] = None
+    customer: Optional[str] = None
+    product: Optional[str] = None	
 
 
     class Config:
@@ -106,29 +71,3 @@ class Response(GenericModel, Generic[T]):
     message: str
     result: Optional[T]
 
-
-#CRUD Add Order
-class AddOrderSchema(BaseModel):
-    order_id: Optional[str] = None
-    nama_pelanggan: Optional[str] = None
-    nomor_internet: Optional[str] = None
-    nomor_hp: Optional[str] = None
-    email_pelanggan: Optional[str] = None
-    witel: Optional[str] = None
-    pic: Optional[str] = None
-    source_order: Optional[str] = None
-
-    class Config:
-        orm_mode = True
-
-class Request(GenericModel, Generic[T]):
-    parameter: Optional[T] = Field(...)
-    
-class RequestAddOrder(BaseModel):
-    parameter: AddOrderSchema = Field(...)
-
-class Response(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]

@@ -7,10 +7,6 @@ from app.model.mixins import TimeMixin
 
 class role(str, Enum):
     Admin = "Admin"
-    Business = "Business"
-    DBS = "DBS"
-    Marketing = "Marketing"
-    Tech = "Tech"
 
 
 class Person(SQLModel, TimeMixin, table=True):
