@@ -1,4 +1,4 @@
-#FastAPI using PostgreSQL (Login-Register and CRUD application)
+# FastAPI using PostgreSQL (Login-Register and CRUD application)
 
 FastAPI is a modern, high-performance web framework for building APIs in Python based on standard type hints. This is a backend development project using FastApi as framework and PostgreSQL as database and Poetry for dependency management. Besides that this backend SQLModel an asynchronous ORM and implements JWT Auth to authenticate and authorize users in web applications and APIs. So, once a user is authenticated, the user gets a secure token that they can use across all systems. This backend includes endpoint Registration, Login, Forgot Password and integrated with CRUD.
 
